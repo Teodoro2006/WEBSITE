@@ -12,4 +12,3 @@ if __name__ == '__main__':
 
 
 #Servidor de heroku
-requirements.txt
