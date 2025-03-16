@@ -1,13 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>
+        Página de Usuários
+    </title>
 </head>
 <body>
-    <p>Users:</p>
+    <form action="/usuarios/logout" method="post">
+        <button type="submit">Logout</button>
+    <p>Usuário Atual: {{ name_user }}</p>
+
+    <h3>Parabéns Entraste numa conta!!
+        És um excelente hacker!!
+    </h3>
     <ul>
-        
+        {% for user in users %}
+            <li>{{ user.name }}</li>
+        {% endfor %}
+    </ul>
+    </form>
 </body>
 </html>

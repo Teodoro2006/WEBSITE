@@ -7,14 +7,14 @@
     <title>Homepage</title>
 </head>
 <body>
-    <h1 class="title">Enrollment </h1>
-    
-    <form action="/usuarios/registar">
+    <form action="/usuarios/registar" method="post">
+        <h1 class="title">Enrollment </h1>
         <input type="text" name="nome" placeholder="Nome">
         <input type="text" name="email" placeholder="Email">
         <input type="password" name="senha"placeholder="Senha">
         <button type="submit">Registar</button>
-
+        <p>Já tem conta?"</p>
+        <a href="/usuarios/login">Login</a>
     </form>
 </body>
 </html>

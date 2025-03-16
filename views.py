@@ -1,5 +1,5 @@
 from main import app
-from flask import render_template, request
+from flask import render_template, request,redirect
 from main2 import session, Usuario
 from  sqlalchemy.sql.expression import func, select
 
@@ -18,18 +18,45 @@ def registar_render():
 
 @app.post('/usuarios/registar')
 def registar():
-    request.form['nome']
-    session.add(Usuario(nome='name_user', email="dad@asd.com", senha="123", telefone="123", endereco="rua", cidade="cidade"))
+   
+    session.add(Usuario(
+        nome=request.form['nome'], 
+        email=request.form['email'], 
+        senha=request.form['senha']
+    ))
     session.commit()
+    return redirect('/usuarios/registar')
 
 @app.route('/usuarios/registar')
 def usuarios(name_user):
+    pass
     # adicionar um usuario a base de dados
     
 
-    # vai buscar um usuario aleatorio
-    session.query(Usuario).order_by(func.random).limit(1).one_or_none()
+    
 
-    # faaz login com senha e password
-    session.query(Usuario).where(Usuario.nome == 'nome para verificar' & Usuario.senha == 'senha a verificar').one_or_none()
-    return render_template("./usuarios.html", name_user=name_user)
+@app.route('/usuarios/login')
+def login():
+    return render_template("./login.html")
+
+@app.post('/usuarios/login')
+def login_post():
+    loginuser = session.query(Usuario).where(Usuario.email == request.form['email'] and  Usuario.senha == request.form['senha']).one_or_none()
+    if not loginuser:
+        return redirect('/usuarios')
+    
+    print("user logged in")
+
+    randomuser = session.query(Usuario).where(Usuario.nome != loginuser.nome).order_by(func.random()).limit(1).one_or_none()
+    
+    print("randomuser", randomuser)
+
+    return render_template("./usuarios.html", name_user=randomuser.nome)
+    # verificar se o usuario existe na base de dados
+    request.form['email']
+    # verificar se a senha esta correta
+    request.form['senha']
+    # retornar a pagina de login
+@app.post('/usuarios/logout')
+def logout():
+    return redirect('/')
