@@ -17,12 +17,11 @@ class Usuario(Base):
     nome = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
     senha = Column(String, nullable=False)
-    
+
     def __init__(self, nome, email, senha):
         self.nome = nome
         self.email = email
         self.senha = senha
-print("Usuário inserido com sucesso!")
 
 # Criar as tabelas no banco de dados
 Base.metadata.create_all(bind=db)

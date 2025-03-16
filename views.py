@@ -27,9 +27,14 @@ def registar():
     session.commit()
     return redirect('/usuarios/registar')
 
+    # adicionar um usuario a base de dados
+    request.form['nome']
+    request.form['email']
+    request.form['senha']
+    # retornar a pagina de registo
 @app.route('/usuarios/registar')
 def usuarios(name_user):
-    pass
+    return
     # adicionar um usuario a base de dados
     
 
@@ -57,6 +62,7 @@ def login_post():
     # verificar se a senha esta correta
     request.form['senha']
     # retornar a pagina de login
+
 @app.post('/usuarios/logout')
 def logout():
     return redirect('/')
